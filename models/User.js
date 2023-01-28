@@ -25,6 +25,10 @@ module.exports = (sequelize, DataTypes) => {
     pronouns: {
       type: DataTypes.STRING,
       allowNull: false,
-    }
+    },
+    refer:  {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   });
 };

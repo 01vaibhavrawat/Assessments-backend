@@ -23,3 +23,13 @@ exports.all = async (req, res, next) => {
 
   res.status(200).json({ success: true, data: user });
 };
+
+exports.refer = asyncHandler(async(req, res, next) => {
+  const users = await User.findAll({
+    where: {
+      refer: req.query.refer
+    } 
+  })
+
+  res.status(200).json({ success: true, data: users });
+})

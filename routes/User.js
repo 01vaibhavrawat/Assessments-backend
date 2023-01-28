@@ -1,16 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { all, signup } = require("../controllers/User.js");
+const { all, signup, refer } = require("../controllers/User.js");
 
 router.route("/").post(signup);
 router.route("/").get(all);
+router.route("/refer").get(refer);
 
 module.exports = router;
-/*
-        const {
-            fullname,
-            email,
-            country,
-            dob,
-            pronouns,
-        } = req.body*/
