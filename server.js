@@ -15,6 +15,6 @@ app.use("/user", User);
 app.use("/assessment", Assessment);
 
 
-app.listen(process.env.port, () => {
-      console.log("Server is listening on port 3500");
+app.listen(process.env.PGPORT, () => {
+      console.log("Server is listening on port", PORT, process.env.port, process.env.PGPORT);
     });
