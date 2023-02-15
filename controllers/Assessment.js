@@ -1,6 +1,4 @@
-require('dotenv').config();
 const { Assessment } = require("../sequelize");
-const jwt = require("jsonwebtoken");
 const asyncHandler = require("../middlewares/asyncHandler");
 
 exports.answers = asyncHandler(async (req, res, next) => {
