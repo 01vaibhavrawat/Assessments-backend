@@ -16,5 +16,5 @@ app.use("/assessment", Assessment);
 
 
 app.listen(process.env.PGPORT, () => {
-      console.log("Server is listening on port", PORT, process.env.port, process.env.PGPORT);
+      console.log("Server is listening on port", process.env.PGPORT);
     });
