@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { User } = require("../sequelize");
+const { User, Contact } = require("../sequelize");
 const jwt = require("jsonwebtoken");
 const asyncHandler = require("../middlewares/asyncHandler");
 
@@ -33,3 +33,13 @@ exports.refer = asyncHandler(async(req, res, next) => {
 
   res.status(200).json({ success: true, data: users });
 })
+
+
+exports.contact = asyncHandler(async (req, res, next) => {
+
+  const data = await Contact.create(req.body);
+
+  await data.save();
+
+  res.status(200).json({ success: true, data: data });
+});
