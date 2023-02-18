@@ -1,27 +1,13 @@
-var express = require('express');
+const express = require("express");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const morgan = require("morgan");
-const swaggerUI = require("swagger-ui-express");
-const swaggerJsdoc = require("swagger-jsdoc")
 
+const swaggerDocs = require("./helpers/swagger");
 const User = require("./routes/User");
 const Assessment = require("./routes/Assessment");
 
-const options = {
-  definition: {
-    openapi: '3.0.0',
-    info: {
-      title: 'HealGratefully.com expressJs API.',
-      version: '1.0.0',
-    },
-  },
-  apis: ['./routes*.js'], // files containing annotations as above
-};
-
-const specification = swaggerJsdoc(options);
-
-var app = express();
+const app = express();
 
 app.use(express.json());
 app.use(cors());
@@ -31,9 +17,16 @@ app.use(morgan("dev"));
 app.use("/user", User);
 app.use("/assessment", Assessment);
 
-app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specification));
+const PORT = process.env.PGPORT || 3500;
 
+const startServer = async () => {
+  try {
+    await app.listen(PORT);
+    console.log(`Server is listening on port ${PORT}`);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-app.listen(process.env.PGPORT, () => {
-      console.log("Server is listening on port", process.env.PGPORT);
-    });
+swaggerDocs(app, PORT);
+startServer();
