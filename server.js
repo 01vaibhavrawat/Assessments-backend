@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const swaggerDocs = require("./helpers/swagger");
 const User = require("./routes/User");
 const Assessment = require("./routes/Assessment");
+const Trial = require("./routes/Trial");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(morgan("dev"));
 
 app.use("/user", User);
 app.use("/assessment", Assessment);
+app.use("/trial", Trial);
 
 const PORT = process.env.PGPORT || 3500;
 
