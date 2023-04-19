@@ -1,5 +1,3 @@
-const { Sequelize } = require("sequelize");
-
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define("User", {
     fullname: {
@@ -13,6 +11,11 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         isEmail: true,
       },
+    },
+    number: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
     },
     country: {
       type: DataTypes.STRING,
